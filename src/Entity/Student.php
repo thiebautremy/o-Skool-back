@@ -8,8 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=StudentRepository::class)
+ * @ApiResource
  */
-#[ApiResource]
 class Student
 {
     /**
@@ -68,6 +68,16 @@ class Student
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $class;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $random;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $birthday;
 
     public function getId(): ?int
     {
@@ -190,6 +200,30 @@ class Student
     public function setClass(?string $class): self
     {
         $this->class = $class;
+
+        return $this;
+    }
+
+    public function getRandom(): ?string
+    {
+        return $this->random;
+    }
+
+    public function setRandom(?string $random): self
+    {
+        $this->random = $random;
+
+        return $this;
+    }
+
+    public function getBirthday(): ?\DateTimeInterface
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(?\DateTimeInterface $birthday): self
+    {
+        $this->birthday = $birthday;
 
         return $this;
     }

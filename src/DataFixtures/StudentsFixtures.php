@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Student;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class StudentsFixtures extends Fixture
 {
@@ -21,7 +22,9 @@ class StudentsFixtures extends Fixture
                     'email' => 'tomegerie@oskool.fr',
                     'health' => '',
                     'hobbies' => 'course en sac',
-                    'class' => 'CM1'
+                    'class' => 'CM1',
+                    'random' => 'Va toujours à la cantine et au périscolaire',
+                    'birthday' => "2019-10-06"
                 ],
                 1 => [
                     'first_name' => 'vivien',
@@ -33,7 +36,9 @@ class StudentsFixtures extends Fixture
                     'email' => 'vivienchemoi@oskool.fr',
                     'health' => 'Allérgie gluten',
                     'hobbies' => 'rugby',
-                    'class' => 'CE1'
+                    'class' => 'CE1',
+                    'random' => 'Ne peut pas pratiquer de sport',
+                    'birthday' => "2019-05-12"
                 ],
                 2 => [
                     'first_name' => 'zackary',
@@ -45,7 +50,9 @@ class StudentsFixtures extends Fixture
                     'email' => 'zackaryamablague@oskool.fr',
                     'health' => 'Allérgie arachide',
                     'hobbies' => 'cuisine',
-                    'class' => 'CE1'
+                    'class' => 'CE1',
+                    'random' => 'Parents divorcés',
+                    'birthday' => "2019-12-22"
                 ],
                 3 => [
                     'first_name' => 'eva',
@@ -57,7 +64,9 @@ class StudentsFixtures extends Fixture
                     'email' => 'evapaure@oskool.fr',
                     'health' => '',
                     'hobbies' => 'foobtall',
-                    'class' => 'CE2'
+                    'class' => 'CE2',
+                    'random' => 'Facilité en Mathématique',
+                    'birthday' => "2019-01-05"
                 ],
                 4 => [
                     'first_name' => 'maud',
@@ -69,7 +78,9 @@ class StudentsFixtures extends Fixture
                     'email' => 'mauderateur@oskool.fr',
                     'health' => '',
                     'hobbies' => 'camping',
-                    'class' => 'CP'
+                    'class' => 'CP',
+                    'random' => 'Caractère difficile',
+                    'birthday' => "2019-03-22"
                 ]
             ];
 
@@ -85,7 +96,9 @@ class StudentsFixtures extends Fixture
                     ->setEmail($student['email'])
                     ->setHealth($student['health'])
                     ->setHobbies($student['hobbies'])
-                    ->setClass($student['class']);
+                    ->setClass($student['class'])
+                    ->setRandom($student['random'])
+                    ->setBirthday(\DateTime::createFromFormat('Y-m-d', $student['birthday']));
     
                 $manager->persist($newStudent);
             }
